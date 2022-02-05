@@ -5,7 +5,9 @@
 */data/Settings.json
 
 venv/
+.env/
 
 .idea
 
 *.pyc
+*.egg-info
