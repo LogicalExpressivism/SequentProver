@@ -1,39 +1,28 @@
 import os
 import shutil
 
-from Controllers.Menus.Handlers import main_menu
-from Controllers.Rules import Settings
+import Controllers.Menus.Handlers
+import Controllers.Rules
 
 _main_dir = os.path.dirname(__file__)
 _data_path = os.path.join(_main_dir, "data")
 _ftue_path = os.path.join(_data_path, "Presets", "FTUE")
 _untracked_src_files = ("Atoms.json", "Names.json", "Settings.json")
 
-
-def main():
-    for file in _untracked_src_files:
-        _initialize_file(file)
-    _initialize_runs()
-    Settings().update_output_file()
-    main_menu()
-
-
-def _initialize_file(file_name):
-    file_path = os.path.join(_data_path, file_name)
+# Initialize Files
+for file in _untracked_src_files:
+    file_path = os.path.join(_data_path, file)
     if not os.path.exists(file_path):
-        _ftue_file = os.path.join(_ftue_path, file_name)
+        _ftue_file = os.path.join(_ftue_path, file)
         shutil.copy(_ftue_file, file_path)
 
+# Initialize Runs
+runs_dir = os.path.join(_data_path, "Runs")
+if not os.path.exists(runs_dir):
+    os.makedirs(runs_dir)
 
-def _initialize_runs():
-    runs_dir = os.path.join(_data_path, "Runs")
-    if not os.path.exists(runs_dir):
-        os.makedirs(runs_dir)
-
-
-if __name__ == '__main__':
-    main()
-
+Controllers.Rules.Settings().update_output_file()
+Controllers.Menus.Handlers.main_menu()
 
 """
 Development Stack: 
