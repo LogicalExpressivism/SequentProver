@@ -1,8 +1,8 @@
 import json
 import os
-import tkinter as tk
+# import tkinter as tk
 from datetime import datetime
-from tkinter import filedialog
+# from tkinter import filedialog
 
 
 _current_dir = os.path.dirname(__file__)
@@ -33,11 +33,13 @@ class _Settings:
         self["Output File"] = f"{now}.json"
 
     def update_input_file(self):
-        window = tk.Tk()
-        window.withdraw()
-        file_path = filedialog.askopenfilename()
-        if file_path:
-            self["Input File"] = str(file_path)
+        print("Unimplemented update_input_file!")
+        pass
+        # window = tk.Tk()
+        # window.withdraw()
+        # file_path = filedialog.askopenfilename()
+        # if file_path:
+        #     self["Input File"] = str(file_path)
 
     @property
     def rules(self):
